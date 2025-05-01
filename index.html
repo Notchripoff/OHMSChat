@@ -13,34 +13,50 @@
     @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
   </style>
   <script>
-    async function loadCredits() {
-      const response = await fetch('credits.html');
-      const creditsContent = await response.text();
-      document.getElementById('credits').innerHTML = creditsContent;
-      document.getElementById('credits').classList.toggle('hidden');
+    function toggleCredits() {
+      const creditsSection = document.getElementById('credits-content');
+      creditsSection.classList.toggle('hidden');
+    }
+
+    function showDownloadAlert() {
+      alert('Coming soon');
     }
   </script>
 </head>
 <body class="bg-[#1a1a1a] text-white font-[Times New Roman] min-h-screen">
   <header class="flex justify-between items-center p-4">
     <nav class="flex space-x-10 text-base">
-      <a href="#" class="text-white" onclick="loadCredits(); return false;">Credits</a>
-      <a href="#" class="text-white">Download</a>
+      <a href="#" class="text-white" onclick="toggleCredits(); return false;">Credits</a>
+      <a href="#" class="text-white" onclick="showDownloadAlert(); return false;">Download</a>
     </nav>
-    <button
-      class="bg-gray-300 text-red-500 font-serif text-lg rounded-full w-24 h-24 flex items-center justify-center"
-      style="font-family: 'Times New Roman', serif;"
-    >
-      Login
-    </button>
+    <a href="login.html">
+      <button
+        class="bg-gray-300 text-red-500 font-serif text-lg rounded-full w-24 h-24 flex items-center justify-center"
+        style="font-family: 'Times New Roman', serif;"
+      >
+        Login
+      </button>
+    </a>
   </header>
+
   <main class="p-4 max-w-xs">
     <p class="text-white text-lg leading-snug font-[Times New Roman]">
-      A website for OHMS students to hang out and chat with other people! with perks better than the one staff made.
+      A website for OHMS students to hang out and chat with other people! With perks better than the one staff made.
     </p>
-    
-    <!-- Credits Section -->
-    <div id="credits" class="hidden"></div>
+
+    <div id="credits-content" class="hidden mt-4">
+      <h1 class="text-2xl font-bold mb-4">Credits</h1>
+      <p class="text-lg leading-snug">
+        This project was made possible by the contributions of the following individuals:
+      </p>
+      <ul class="list-disc list-inside mt-4">
+        <li>Jackson M - Developer/Owner</li>
+        <li>Bri - Developer/Owner</li>
+      </ul>
+      <p class="mt-4">
+        Special thanks to the OHMS community for their support and feedback!
+      </p>
+    </div>
   </main>
 </body>
 </html>

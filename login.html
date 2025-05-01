@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OHMS Chat - Login</title>
+  <!-- Font Awesome CDN link for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      overflow: auto;
+    }
+    .wrapper {
+      max-width: 450px;
+      width: 100%;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(0);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .wrapper:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+    .wrapper .title {
+      height: 100px;
+      background: #16a085;
+      border-radius: 10px 10px 0 0;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .wrapper form {
+      padding: 30px;
+    }
+    .wrapper form .row {
+      height: 50px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .wrapper form .row input {
+      height: 100%;
+      width: 100%;
+      outline: none;
+      padding-left: 60px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    form .row input:focus {
+      border-color: #16a085;
+      box-shadow: 0 0 0 2px rgba(22, 160, 133, 0.2);
+    }
+    form .row input::placeholder {
+      color: #aaa;
+    }
+    .wrapper form .row i {
+      position: absolute;
+      width: 50px;
+      height: 100%;
+      color: #fff;
+      font-size: 20px;
+      background: #16a085;
+      border: 1px solid #16a085;
+      border-radius: 5px 0 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .wrapper form .pass {
+      margin: 15px 0 25px;
+      text-align: right;
+    }
+    .wrapper form .pass a {
+      color: #16a085;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .wrapper form .pass a:hover {
+      text-decoration: underline;
+      color: #12876f;
+    }
+    .wrapper form .button input {
+      margin-top: 10px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      padding-left: 0;
+      background: #16a085;
+      border: 1px solid #16a085;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    form .button input:hover {
+      background: #12876f;
+      border-color: #12876f;
+    }
+    .wrapper form .signup-link {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 16px;
+      color: #666;
+    }
+    .wrapper form .signup-link a {
+      color: #16a085;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    form .signup-link a:hover {
+      text-decoration: underline;
+      color: #12876f;
+    }
+    .error-message {
+      color: #e74c3c;
+      font-size: 14px;
+      margin-top: 5px;
+      text-align: center;
+      display: none;
+    }
+    @media (max-width: 480px) {
+      .wrapper {
+        border-radius: 0;
+      }
+      .wrapper .title {
+        border-radius: 0;
+      }
+      body {
+        padding: 0;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title"><span>OHMS Chat Login</span></div>
+    <form action="#" method="post" id="loginForm">
+      <div class="row">
+        <i class="fas fa-user"></i>
+        <input type="text" id="username" name="username" placeholder="Username or Email" required />
+      </div>
+      <div class="row">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="password" name="password" placeholder="Password" required />
+      </div>
+      <div class="pass"><a href="#">Forgot password?</a></div>
+      <div id="errorMessage" class="error-message"></div>
+      <div class="row button">
+        <input type="submit" value="Login" />
+      </div>
+      <div class="signup-link">Not a member? <a href="#">Sign up now</a></div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const errorElement = document.getElementById('errorMessage');
+      if(username === '' || password === '') {
+        errorElement.textContent = 'Please fill in all fields';
+        errorElement.style.display = 'block';
+        return;
+      }
+      
+      if(password.length < 6) {
+        errorElement.textContent = 'Password must be at least 6 characters';
+        errorElement.style.display = 'block';
+        return;
+      }
+      errorElement.style.display = 'none';
+      alert('Login successful! Redirecting...');
+    });
+  </script>
+</body>
+</html>
