@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OHMS Chat</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&display=swap');
+  </style>
+  <script>
+    async function loadCredits() {
+      const response = await fetch('credits.html');
+      const creditsContent = await response.text();
+      document.getElementById('credits').innerHTML = creditsContent;
+      document.getElementById('credits').classList.toggle('hidden');
+    }
+  </script>
+</head>
+<body class="bg-[#1a1a1a] text-white font-[Times New Roman] min-h-screen">
+  <header class="flex justify-between items-center p-4">
+    <nav class="flex space-x-10 text-base">
+      <a href="#" class="text-white" onclick="loadCredits(); return false;">Credits</a>
+      <a href="#" class="text-white">Download</a>
+    </nav>
+    <button
+      class="bg-gray-300 text-red-500 font-serif text-lg rounded-full w-24 h-24 flex items-center justify-center"
+      style="font-family: 'Times New Roman', serif;"
+    >
+      Login
+    </button>
+  </header>
+  <main class="p-4 max-w-xs">
+    <p class="text-white text-lg leading-snug font-[Times New Roman]">
+      A website for OHMS students to hang out and chat with other people! with perks better than the one staff made.
+    </p>
+    
+    <!-- Credits Section -->
+    <div id="credits" class="hidden"></div>
+  </main>
+</body>
+</html>
